@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leaderful — Grow the Leader Within You</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:     #0e1f0f;
+  --bg2:    #0a1a0b;
+  --forest: #1b4d1c;
+  --moss:   #2d6930;
+  --mint:   #00e5a0;
+  --gold:   #f0a500;
+  --cream:  #f4f6f0;
+  --mist:   #c8f5e8;
+  --dim:    #7a9a7a;
+  --card:   #111f12;
+  --cardb:  #1e3d20;
+  --red:    #b03030;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--cream);
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─────────────────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 2.5rem;
+  background: rgba(14,31,15,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0,229,160,0.08);
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 900;
+  color: var(--cream); text-decoration: none;
+}
+.nav-logo span { color: var(--mint); font-style: italic; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-size: 0.85rem; font-weight: 600; color: var(--dim);
+  text-decoration: none; letter-spacing: 0.04em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--mint); }
+.nav-cta {
+  background: var(--mint); color: var(--bg);
+  padding: 0.55rem 1.4rem; border-radius: 2rem;
+  font-size: 0.85rem; font-weight: 700; text-decoration: none;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.nav-cta:hover { box-shadow: 0 0 24px rgba(0,229,160,0.35); transform: translateY(-1px); }
+
+/* ─── HERO ─────────────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 8rem 2.5rem 5rem;
+  position: relative; overflow: hidden;
+}
+.orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(100px); pointer-events: none;
+  animation: pulse 8s ease-in-out infinite;
+}
+.orb1 { width: 600px; height: 600px; background: rgba(0,229,160,0.06); top: -100px; right: -150px; }
+.orb2 { width: 400px; height: 400px; background: rgba(240,165,0,0.04); bottom: 0; left: -100px; animation-delay: 4s; }
+@keyframes pulse { 0%,100%{transform:scale(1);opacity:0.7} 50%{transform:scale(1.08);opacity:1} }
+
+.hero-inner {
+  max-width: 1200px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+}
+.hero-eyebrow {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--mint);
+  margin-bottom: 1.2rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--mint); }
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 900; line-height: 1.05;
+  color: var(--cream); margin-bottom: 1.5rem;
+}
+.hero-title .accent { color: var(--mint); font-style: italic; }
+
+.hero-sub {
+  font-size: 1.1rem; color: var(--mist);
+  line-height: 1.7; margin-bottom: 2rem;
+  max-width: 520px;
+}
+
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--mint); color: var(--bg);
+  padding: 0.9rem 2rem; border-radius: 3rem;
+  font-weight: 700; font-size: 0.95rem;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 30px rgba(0,229,160,0.2);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 45px rgba(0,229,160,0.4); }
+.btn-ghost {
+  border: 1px solid rgba(0,229,160,0.25); color: var(--mint);
+  padding: 0.9rem 2rem; border-radius: 3rem;
+  font-weight: 600; font-size: 0.95rem;
+  text-decoration: none; transition: border-color 0.2s, background 0.2s;
+}
+.btn-ghost:hover { border-color: var(--mint); background: rgba(0,229,160,0.05); }
+
+.hero-stat-row {
+  display: flex; gap: 1.5rem; margin-top: 2.5rem; flex-wrap: wrap;
+}
+.hero-stat { }
+.hero-stat .n {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; font-weight: 900; color: var(--mint); line-height: 1;
+}
+.hero-stat .l { font-size: 0.72rem; color: var(--dim); margin-top: 0.2rem; }
+
+/* Hero right - phone mockup */
+.hero-visual {
+  position: relative; display: flex;
+  justify-content: center; align-items: center;
+}
+.phone-frame {
+  width: 280px; background: #0a0f0a;
+  border-radius: 2.5rem; padding: 0.5rem;
+  border: 1.5px solid var(--forest);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,229,160,0.08);
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+.phone-screen {
+  background: var(--bg2); border-radius: 2rem;
+  overflow: hidden; min-height: 480px;
+}
+.phone-notch {
+  width: 80px; height: 20px; background: #0a0f0a;
+  border-radius: 0 0 1rem 1rem; margin: 0 auto 0;
+}
+.phone-status {
+  display: flex; justify-content: space-between;
+  padding: 0.4rem 1rem 0.2rem;
+  font-size: 0.55rem; font-weight: 700; color: var(--mist);
+  font-family: monospace;
+}
+.phone-content { padding: 0.6rem 0.9rem; }
+.ph-greeting { font-size: 0.6rem; color: var(--dim); }
+.ph-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 900; color: var(--cream); margin-bottom: 0.6rem; }
+.ph-name em { color: var(--mint); font-style: italic; }
+.ph-streak {
+  background: linear-gradient(135deg, var(--forest), #0d2e0f);
+  border: 1px solid rgba(0,229,160,0.15);
+  border-radius: 0.75rem; padding: 0.65rem 0.75rem;
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 0.6rem;
+}
+.ph-streak-n { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; color: var(--mint); }
+.ph-streak-l { font-size: 0.52rem; color: var(--dim); }
+.ph-dots { display: flex; gap: 0.22rem; }
+.ph-dot {
+  width: 20px; height: 20px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.42rem; font-weight: 700;
+}
+.dot-done { background: var(--mint); color: var(--bg); }
+.dot-today { background: rgba(240,165,0,0.15); border: 1px solid var(--gold); color: var(--gold); }
+.dot-empty { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: transparent; }
+.ph-section-label {
+  font-size: 0.5rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--mint);
+  margin: 0.5rem 0 0.3rem;
+  display: flex; align-items: center; gap: 0.3rem;
+}
+.ph-section-label::before { content:''; width:10px; height:1px; background:var(--mint); }
+.ph-card {
+  background: var(--card); border: 1px solid var(--cardb);
+  border-radius: 0.6rem; padding: 0.6rem 0.7rem; margin-bottom: 0.4rem;
+}
+.ph-ch-title { font-size: 0.62rem; font-weight: 700; color: var(--cream); }
+.ph-ch-desc { font-size: 0.55rem; color: var(--dim); margin: 0.15rem 0 0.3rem; line-height: 1.5; }
+.ph-badge {
+  display: inline-flex; padding: 0.1rem 0.4rem;
+  border-radius: 1rem; font-size: 0.48rem; font-weight: 700;
+}
+.badge-done { background: rgba(0,229,160,0.12); color: var(--mint); }
+.badge-prog { background: rgba(240,165,0,0.12); color: var(--gold); }
+.badge-new  { background: rgba(176,48,48,0.12); color: var(--red); }
+.ph-nav {
+  display: flex; justify-content: space-around;
+  border-top: 1px solid var(--cardb);
+  padding: 0.4rem 0 0.5rem;
+  margin-top: 0.3rem;
+}
+.ph-nav-item { font-size: 0.44rem; color: var(--dim); text-align: center; }
+.ph-nav-item.active { color: var(--mint); }
+.ph-nav-icon { font-size: 0.9rem; display: block; }
+
+/* Floating badge */
+.floating-badge {
+  position: absolute;
+  background: var(--card); border: 1px solid var(--cardb);
+  border-radius: 1rem; padding: 0.6rem 0.9rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  animation: float 6s ease-in-out infinite;
+}
+.fb-top { top: 15%; right: -60px; animation-delay: 1s; }
+.fb-bot { bottom: 20%; left: -60px; animation-delay: 2.5s; }
+.fb-label { font-size: 0.6rem; color: var(--dim); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+.fb-value { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 900; color: var(--mint); }
+.fb-sub { font-size: 0.55rem; color: var(--dim); }
+
+/* ─── SECTION SHARED ───────────────────────────────────────────── */
+section { padding: 6rem 2.5rem; }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+.section-eyebrow {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--mint);
+  margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.section-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--mint); }
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 900; color: var(--cream);
+  line-height: 1.15; margin-bottom: 1.2rem;
+}
+.section-title .accent { color: var(--mint); font-style: italic; }
+.section-title .gold { color: var(--gold); }
+
+/* ─── URGENCY SECTION ──────────────────────────────────────────── */
+#urgency { background: var(--bg2); }
+.urgency-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem;
+  align-items: start; margin-top: 3rem;
+}
+.urgency-left { }
+.problem-statement {
+  font-size: 1.05rem; color: var(--mist); line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+.root-cause {
+  background: var(--card); border-left: 3px solid var(--gold);
+  padding: 1rem 1.2rem; border-radius: 0 0.5rem 0.5rem 0;
+  margin-bottom: 2rem;
+}
+.root-cause .rc-label { font-size: 0.65rem; font-weight: 700; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; }
+.root-cause p { font-size: 0.9rem; color: var(--cream); line-height: 1.6; font-style: italic; }
+
+.urgency-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.ustat {
+  background: var(--card); border: 1px solid var(--cardb);
+  border-radius: 1rem; padding: 1.2rem;
+  position: relative; overflow: hidden;
+}
+.ustat::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: var(--mint);
+}
+.ustat.gold::before { background: var(--gold); }
+.ustat .us-n {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem; font-weight: 900; color: var(--mint);
+  line-height: 1; margin-bottom: 0.4rem;
+}
+.ustat.gold .us-n { color: var(--gold); }
+.ustat .us-t { font-size: 0.85rem; color: var(--mist); line-height: 1.5; }
+
+.urgency-right { }
+.urgency-human {
+  background: var(--card); border: 1px solid var(--cardb);
+  border-radius: 1.5rem; padding: 2rem;
+  position: relative;
+}
+.uh-label {
+  font-size: 0.65rem; font-weight: 700; color: var(--gold);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+.yuna-card { margin-bottom: 1.2rem; }
+.yuna-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+.yuna-av {
+  width: 42px; height: 42px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 900;
+}
+.before-av { background: rgba(176,48,48,0.2); border: 1px solid var(--red); color: #ffbbbb; }
+.after-av  { background: var(--mint); color: var(--bg); }
+.yuna-name { font-weight: 700; color: var(--cream); font-size: 0.9rem; }
+.yuna-sub  { font-size: 0.72rem; color: var(--dim); }
+.yuna-text { font-size: 0.88rem; color: var(--mist); line-height: 1.65; }
+.yuna-divider { display: flex; align-items: center; gap: 0.75rem; margin: 1rem 0; }
+.yuna-divider::before,
+.yuna-divider::after { content: ''; flex: 1; height: 1px; background: var(--cardb); }
+.yuna-arrow { color: var(--mint); font-size: 1.1rem; }
+.founder-note {
+  border-top: 1px solid var(--cardb); padding-top: 1rem; margin-top: 1rem;
+}
+.fn-label { font-size: 0.65rem; color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+.fn-quote { font-size: 0.9rem; color: var(--mist); font-style: italic; line-height: 1.6; }
+
+/* ─── SOLUTION / HOW IT WORKS ──────────────────────────────────── */
+#solution { }
+.pillars-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem;
+  margin-top: 3rem;
+}
+@media (min-width: 900px) { .pillars-grid { grid-template-columns: repeat(4, 1fr); } }
+.pillar {
+  background: var(--card); border: 1px solid var(--cardb);
+  border-radius: 1.25rem; padding: 1.5rem 1.2rem;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.pillar:hover { border-color: rgba(0,229,160,0.2); transform: translateY(-4px); }
+.pillar-icon { font-size: 1.8rem; margin-bottom: 1rem; display: block; }
+.pillar-title { font-size: 1rem; font-weight: 700; color: var(--cream); margin-bottom: 0.5rem; }
+.pillar-body { font-size: 0.83rem; color: var(--dim); line-height: 1.65; }
+
+.toc-box {
+  background: var(--forest); border-radius: 1.25rem;
+  padding: 2rem; margin-top: 2rem;
+  display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center;
+}
+.toc-item { }
+.toc-n { font-size: 0.65rem; font-weight: 700; color: var(--mint); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+.toc-text { font-size: 0.95rem; font-weight: 600; color: var(--cream); line-height: 1.5; }
+.toc-arrow { font-size: 1.5rem; color: var(--mint); text-align: center; }
+
+/* ─── APP SECTION ──────────────────────────────────────────────── */
+#app-section { background: var(--bg2); }
+.app-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+}
+.app-features { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+.app-feature {
+  display: flex; gap: 1rem; align-items: flex-start;
+  background: var(--card); border: 1px solid var(--cardb);
+  border-radius: 1rem; padding: 1rem 1.1rem;
+  transition: border-color 0.2s;
+}
+.app-feature:hover { border-color: rgba(0,229,160,0.18); }
+.af-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 0.1rem; }
+.af-title { font-weight: 700; color: var(--cream); font-size: 0.9rem; margin-bottom: 0.2rem; }
+.af-desc { font-size: 0.8rem; color: var(--dim); line-height: 1.6; }
+
+.app-visual { display: flex; justify-content: center; }
+.app-cta-box {
+  background: var(--card); border: 1px solid rgba(0,229,160,0.2);
+  border-radius: 1.5rem; padding: 2rem; text-align: center;
+  max-width: 340px; margin-top: 1.5rem;
+}
+.app-cta-box h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--cream); margin-bottom: 0.5rem; }
+.app-cta-box p { font-size: 0.85rem; color: var(--dim); margin-bottom: 1.5rem; line-height: 1.6; }
+.profiles-row { display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.profile-chip {
+  display: flex; align-items: center; gap: 0.4rem;
+  background: var(--forest); border-radius: 2rem;
+  padding: 0.35rem 0.75rem 0.35rem 0.35rem;
+  font-size: 0.75rem; font-weight: 600; color: var(--mist);
+  cursor: default;
+}
+.profile-chip-av {
+  width: 26px; height: 26px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; font-weight: 700; font-family: 'Playfair Display', serif;
+}
+
+/* ─── TRACTION ─────────────────────────────────────────────────── */
+#traction { }
+.traction-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem;
+  margin-top: 3rem;
+}
+@media (min-width: 700px) { .traction-grid { grid-template-columns: repeat(4, 1fr); } }
+.traction-card {
+  background: var(--forest); border-radius: 1.25rem;
+  padding: 1.5rem 1.2rem; text-align: center;
+  border: 1px solid rgba(0,229,160,0.12);
+}
+.tc-n {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem; font-weight: 900; color: var(--mint);
+  line-height: 1; margin-bottom: 0.4rem;
+}
+.tc-l { font-size: 0.85rem; font-weight: 700; color: var(--cream); margin-bottom: 0.2rem; }
+.tc-s { font-size: 0.72rem; color: var(--dim); }
+
+/* ─── TEAM ─────────────────────────────────────────────────────── */
+#team { background: var(--bg2); }
+.team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+@media (min-width: 900px) { .team-grid { grid-template-columns: 1fr 1fr 1fr 1fr; } }
+.team-card {
+  background: var(--card); border: 1px solid var(--cardb);
+  border-radius: 1.25rem; padding: 1.5rem 1.2rem;
+}
+.tc-av {
+  width: 56px; height: 56px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900;
+  margin-bottom: 1rem;
+}
+.tc-name { font-size: 1rem; font-weight: 700; color: var(--cream); margin-bottom: 0.2rem; }
+.tc-role { font-size: 0.75rem; color: var(--mint); font-weight: 600; margin-bottom: 0.15rem; }
+.tc-inst { font-size: 0.72rem; color: var(--dim); margin-bottom: 0.6rem; }
+.tc-desc { font-size: 0.8rem; color: var(--mist); line-height: 1.6; }
+
+/* ─── CTA / FOOTER ─────────────────────────────────────────────── */
+#cta {
+  padding: 6rem 2.5rem;
+  background: var(--forest);
+  text-align: center; position: relative; overflow: hidden;
+}
+.cta-orb {
+  position: absolute; border-radius: 50%; filter: blur(80px);
+  width: 500px; height: 500px;
+  background: rgba(0,229,160,0.06);
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+}
+.cta-inner { position: relative; max-width: 680px; margin: 0 auto; }
+.cta-inner h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 900; color: var(--cream);
+  line-height: 1.15; margin-bottom: 1.2rem;
+}
+.cta-inner p { font-size: 1.05rem; color: var(--mist); line-height: 1.7; margin-bottom: 2rem; }
+.cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+footer {
+  background: var(--bg2); padding: 2rem 2.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid var(--cardb); flex-wrap: wrap; gap: 1rem;
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; font-weight: 900; color: var(--cream); text-decoration: none;
+}
+.footer-logo span { color: var(--mint); font-style: italic; }
+.footer-note { font-size: 0.78rem; color: var(--dim); }
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a { font-size: 0.78rem; color: var(--dim); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--mint); }
+
+/* ─── RESPONSIVE ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  nav { padding: 0.9rem 1.2rem; }
+  .nav-links { display: none; }
+  .hero { padding: 6rem 1.2rem 3rem; }
+  .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hero-visual { order: -1; }
+  .phone-frame { width: 220px; }
+  .floating-badge { display: none; }
+  .urgency-grid, .app-inner, .team-grid { grid-template-columns: 1fr; }
+  .toc-box { grid-template-columns: 1fr; }
+  .toc-arrow { transform: rotate(90deg); }
+  section { padding: 4rem 1.2rem; }
+  footer { flex-direction: column; text-align: center; }
+}
+
+/* Fade in on scroll - handled via CSS only */
+.fade-in {
+  opacity: 1; transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.ready { opacity: 0; transform: translateY(24px); }
+.fade-in.ready.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Leader<span>ful</span></a>
+  <ul class="nav-links">
+    <li><a href="#urgency">The Problem</a></li>
+    <li><a href="#solution">How It Works</a></li>
+    <li><a href="#app-section">The App</a></li>
+    <li><a href="#traction">Traction</a></li>
+    <li><a href="#team">Team</a></li>
+  </ul>
+  <a href="https://cjo07-sumo.github.io/leaderful" target="_blank" class="nav-cta">Explore the App →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Educational Leadership Platform</div>
+      <h1 class="hero-title">
+        Grow the <span class="accent">leader</span><br>within you.
+      </h1>
+      <p class="hero-sub">
+        Leaderful is an identity-first leadership development platform for adolescents (14–18). Built for the student no program has ever reached — the multilingual, immigrant, and first-generation teen who has never seen themselves as a possible leader.
+      </p>
+      <div class="hero-actions">
+        <a href="https://cjo07-sumo.github.io/leaderful" target="_blank" class="btn-primary">Try the App →</a>
+        <a href="#urgency" class="btn-ghost">Learn the Problem</a>
+      </div>
+      <div class="hero-stat-row">
+        <div class="hero-stat"><div class="n">30+</div><div class="l">Pilot Students</div></div>
+        <div class="hero-stat"><div class="n">22</div><div class="l">Languages</div></div>
+        <div class="hero-stat"><div class="n">14–18</div><div class="l">Age Range</div></div>
+        <div class="hero-stat"><div class="n">LID</div><div class="l">Research Framework</div></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <!-- Floating badges -->
+      <div class="floating-badge fb-top">
+        <div class="fb-label">Identity Stage</div>
+        <div class="fb-value">3 → 4</div>
+        <div class="fb-sub">LID progression</div>
+      </div>
+      <div class="floating-badge fb-bot">
+        <div class="fb-label">Cultural Identity</div>
+        <div class="fb-value">82%</div>
+        <div class="fb-sub">Yuna · 6 weeks</div>
+      </div>
+
+      <!-- Phone mockup -->
+      <div class="phone-frame">
+        <div class="phone-screen">
+          <div class="phone-notch"></div>
+          <div class="phone-status"><span>9:41</span><span style="color:var(--mint);font-size:0.5rem;letter-spacing:0.08em">LEADERFUL</span><span>●●●</span></div>
+          <div class="phone-content">
+            <div class="ph-greeting">Good morning,</div>
+            <div class="ph-name">Welcome back, <em>Yuna</em> 👋</div>
+            <div class="ph-streak">
+              <div>
+                <div style="font-size:0.52rem;color:var(--mist);font-weight:700;margin-bottom:0.15rem">🔥 Streak</div>
+                <div class="ph-streak-n">5</div>
+                <div class="ph-streak-l">days in a row</div>
+              </div>
+              <div class="ph-dots">
+                <div class="ph-dot dot-done">M</div>
+                <div class="ph-dot dot-done">T</div>
+                <div class="ph-dot dot-done">W</div>
+                <div class="ph-dot dot-done">T</div>
+                <div class="ph-dot dot-today">F</div>
+                <div class="ph-dot dot-empty">S</div>
+              </div>
+            </div>
+            <div class="ph-section-label">Today's Challenge</div>
+            <div class="ph-card">
+              <div class="ph-ch-title">🤖 Ethical AI Argument</div>
+              <div class="ph-ch-desc">Should AI grade student essays? Build your argument.</div>
+              <span class="ph-badge badge-prog">In Progress</span>
+              <span class="ph-badge badge-done" style="margin-left:0.3rem">Argumentation</span>
+            </div>
+            <div class="ph-section-label">Journal Prompt</div>
+            <div class="ph-card" style="background:linear-gradient(135deg,rgba(27,77,28,0.4),rgba(0,229,160,0.04));border-color:rgba(0,229,160,0.15)">
+              <div style="font-size:0.5rem;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.2rem">✍️ Day 5</div>
+              <div style="font-size:0.58rem;color:var(--cream);font-style:italic;line-height:1.5">"What part of your cultural identity makes you a better thinker?"</div>
+            </div>
+          </div>
+          <div class="ph-nav">
+            <div class="ph-nav-item active"><span class="ph-nav-icon">🏠</span>Home</div>
+            <div class="ph-nav-item"><span class="ph-nav-icon">🏆</span>Portfolio</div>
+            <div class="ph-nav-item"><span class="ph-nav-icon">📓</span>Journal</div>
+            <div class="ph-nav-item"><span class="ph-nav-icon">💬</span>Hub</div>
+            <div class="ph-nav-item"><span class="ph-nav-icon">📚</span>Read</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- URGENCY / PROBLEM -->
+<section id="urgency" class="fade-in">
+  <div class="section-inner">
+    <div class="section-eyebrow">The Problem</div>
+    <h2 class="section-title">This isn't just about leadership.<br>It's about <span class="accent">identity</span>, purpose, and <span class="gold">who you believe you can be.</span></h2>
+
+    <div class="urgency-grid">
+      <div class="urgency-left">
+        <p class="problem-statement">
+          Multilingual, immigrant, and BIPOC adolescents are not failing because they lack ability. They are failing to develop leadership identity because no program has ever given them a mirror — a framework that says: someone who looks, sounds, and lives like you is a leader.
+        </p>
+        <p class="problem-statement">
+          The SAT, AP, and IB exams test critical thinking, argumentation, and leadership cognition. Schools test these skills relentlessly. They never formally teach them. And the development of leadership identity — the inner belief that leadership is possible for you — happens at ages 14–18 or it becomes significantly harder to develop at all.
+        </p>
+        <div class="root-cause">
+          <div class="rc-label">Root Cause</div>
+          <p>Schools never made identity-affirming leadership development part of the curriculum. No app has either. Leaderful is the first to try — and the urgency is real: this is the developmental window. Miss it, and identity calcifies.</p>
+        </div>
+        <div class="urgency-stats">
+          <div class="ustat">
+            <div class="us-n">68%</div>
+            <div class="us-t">of teens from immigrant families feel invisible in school leadership spaces</div>
+          </div>
+          <div class="ustat gold">
+            <div class="us-n">0</div>
+            <div class="us-t">apps combine cultural identity + leadership identity + cognitive skill-building</div>
+          </div>
+          <div class="ustat gold">
+            <div class="us-n">87%</div>
+            <div class="us-t">of leadership development programs delivered in English only</div>
+          </div>
+          <div class="ustat">
+            <div class="us-n">~15M</div>
+            <div class="us-t">multilingual adolescents in the US and South Korea alone — currently underserved</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="urgency-right">
+        <div class="urgency-human">
+          <div class="uh-label">The Student We Build For</div>
+          <div class="yuna-card">
+            <div class="yuna-header">
+              <div class="yuna-av before-av">Y</div>
+              <div>
+                <div class="yuna-name">Yuna, 17 · Korean-American</div>
+                <div class="yuna-sub" style="color:var(--red)">Straight A's · voice shakes in class</div>
+              </div>
+            </div>
+            <p class="yuna-text">She's never seen a Korean woman in her textbooks. Her parents say "study hard, not speak up." She doesn't feel American enough to lead. She has ability, identity, and purpose — but no mirror to see herself in.</p>
+          </div>
+          <div class="yuna-divider"><div class="yuna-arrow">→ 6 weeks with Leaderful →</div></div>
+          <div class="yuna-card">
+            <div class="yuna-header">
+              <div class="yuna-av after-av">Y</div>
+              <div>
+                <div class="yuna-name">Yuna, 17 · Korean-American</div>
+                <div class="yuna-sub" style="color:var(--mint)">Leading her group  ✓</div>
+              </div>
+            </div>
+            <p class="yuna-text">She reads about activist Ryu Gwan-sun and discovers a word for what she's always been. Completes a speech challenge — voice doesn't shake. Leads her group. Builds a portfolio. Sees herself as a leader.</p>
+          </div>
+          <div class="founder-note">
+            <div class="fn-label">Why this matters to me</div>
+            <div class="fn-quote">"Because I was Yuna. And today, I see so many more Yuna's out there." — Claudia Jo, Founder</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution" class="fade-in">
+  <div class="section-inner">
+    <div class="section-eyebrow">How It Works</div>
+    <h2 class="section-title">An <span class="accent">identity-first</span> approach.<br>Four pillars. One coherent arc.</h2>
+
+    <div class="toc-box">
+      <div class="toc-item">
+        <div class="toc-n">① First</div>
+        <div class="toc-text">Structured low-risk challenges → repeated success builds cognitive confidence</div>
+      </div>
+      <div class="toc-arrow">→</div>
+      <div class="toc-item">
+        <div class="toc-n">② Then</div>
+        <div class="toc-text">Confidence + cultural identity shift → student begins to see leadership as possible for them</div>
+      </div>
+    </div>
+
+    <div class="pillars-grid" style="margin-top:2rem">
+      <div class="pillar">
+        <span class="pillar-icon">📓</span>
+        <div class="pillar-title">Low-Risk Entry</div>
+        <div class="pillar-body">Journaling first — one sentence, no audience, no judgment. Build self-awareness before challenges begin. The lowest possible barrier, by design.</div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🌏</span>
+        <div class="pillar-title">Cultural Mirror</div>
+        <div class="pillar-body">Readings in 22 languages featuring leaders who look like Yuna — Ryu Gwan-sun, Ubuntu philosophy, Haudenosaunee tradition, Anzaldúa's borderlands theory.</div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🧠</span>
+        <div class="pillar-title">Cognitive Skill-Building</div>
+        <div class="pillar-body">Structured challenges in argumentation, critical thinking, and public speaking — the exact skills AP and SAT tests measure but no class formally teaches.</div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🏆</span>
+        <div class="pillar-title">Peer Portfolio</div>
+        <div class="pillar-body">A verifiable leadership identity record, built challenge by challenge. Shareable with counselors, colleges, and community organizations.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:2rem;background:var(--card);border:1px solid var(--cardb);border-left:3px solid var(--gold);border-radius:0 1rem 1rem 0;padding:1.2rem 1.5rem">
+      <div style="font-size:0.65rem;font-weight:700;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4rem">Equity by Design</div>
+      <p style="font-size:0.92rem;color:var(--mist);line-height:1.7">Every design decision centers the student who is hardest to reach. The institutional activation model — a teacher or counselor hands Yuna the first prompt — means the platform doesn't require self-motivation to start. This removes the access barrier that sinks most self-directed ed-tech.</p>
+    </div>
+  </div>
+</section>
+
+<!-- APP SECTION -->
+<section id="app-section" class="fade-in">
+  <div class="section-inner">
+    <div class="app-inner">
+      <div>
+        <div class="section-eyebrow">The App</div>
+        <h2 class="section-title" style="font-size:clamp(1.8rem,3vw,2.5rem)">Experience it yourself.<br><span class="accent">Three students. One mirror.</span></h2>
+        <p style="font-size:0.95rem;color:var(--mist);line-height:1.7;margin-bottom:1.5rem">
+          The Leaderful app is live and interactive. Explore as Yuna (Korean-American, 17), DeShawn (Atlanta, 16), or Amara (Ghanaian-British, 15) — each with a full leadership portfolio, journal, cultural readings, and peer community.
+        </p>
+        <div class="app-features">
+          <div class="app-feature">
+            <div class="af-icon">📓</div>
+            <div><div class="af-title">Daily Journaling</div><div class="af-desc">Identity-building prompts grounded in LID Stages 2–4. Students write for 5 minutes — private, low-stakes, high-impact.</div></div>
+          </div>
+          <div class="app-feature">
+            <div class="af-icon">📊</div>
+            <div><div class="af-title">Leadership Portfolio</div><div class="af-desc">Skill tracking across critical thinking, cultural identity, public speaking, argumentation, and self-reflection.</div></div>
+          </div>
+          <div class="app-feature">
+            <div class="af-icon">💬</div>
+            <div><div class="af-title">Peer Community</div><div class="af-desc">Cross-cultural discussion threads connecting students in the US, South Korea, and UK around shared leadership experiences.</div></div>
+          </div>
+          <div class="app-feature">
+            <div class="af-icon">📚</div>
+            <div><div class="af-title">Cultural Readings</div><div class="af-desc">Curated texts in 22 languages. Korean, Indigenous, West African, Chicana, South Asian — leaders who look like the students reading about them.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="app-visual">
+        <div style="width:100%;max-width:380px">
+          <div class="app-cta-box">
+            <h3>Try the App</h3>
+            <p>Choose a student profile and explore Leaderful's full experience — portfolio, journal, challenges, and community.</p>
+            <div class="profiles-row">
+              <div class="profile-chip">
+                <div class="profile-chip-av" style="background:linear-gradient(135deg,#1a4a1b,#00e5a0);color:#09160a">Y</div>
+                Yuna · Seoul/Boston
+              </div>
+              <div class="profile-chip">
+                <div class="profile-chip-av" style="background:linear-gradient(135deg,#3a2000,#f0a500);color:#09160a">D</div>
+                DeShawn · Atlanta
+              </div>
+              <div class="profile-chip">
+                <div class="profile-chip-av" style="background:linear-gradient(135deg,#2a0035,#a78bfa);color:#f0ede4">A</div>
+                Amara · London
+              </div>
+            </div>
+            <a href="https://cjo07-sumo.github.io/leaderful" target="_blank" class="btn-primary" style="display:inline-flex;margin:0 auto">Open App →</a>
+          </div>
+          <div style="text-align:center;margin-top:1.2rem;font-size:0.75rem;color:var(--dim)">
+            Or scan the QR code from the pitch deck
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACTION -->
+<section id="traction" class="fade-in">
+  <div class="section-inner">
+    <div class="section-eyebrow">Traction</div>
+    <h2 class="section-title">The pilot is running.<br><span class="accent">The students are real.</span></h2>
+    <div class="traction-grid">
+      <div class="traction-card">
+        <div class="tc-n">30+</div>
+        <div class="tc-l">Students in Active Pilot</div>
+        <div class="tc-s">US cohort · 2024–2025</div>
+      </div>
+      <div class="traction-card">
+        <div class="tc-n">6</div>
+        <div class="tc-l">Weeks Per Cohort Cycle</div>
+        <div class="tc-s">LID pre/post measurement</div>
+      </div>
+      <div class="traction-card">
+        <div class="tc-n">22</div>
+        <div class="tc-l">Languages</div>
+        <div class="tc-s">Cultural readings library</div>
+      </div>
+      <div class="traction-card">
+        <div class="tc-n">2</div>
+        <div class="tc-l">Countries</div>
+        <div class="tc-s">US now · South Korea 2025</div>
+      </div>
+    </div>
+    <div style="margin-top:2rem;background:var(--card);border:1px solid var(--cardb);border-radius:1.25rem;padding:1.5rem 2rem;display:flex;gap:2rem;align-items:center;flex-wrap:wrap">
+      <div style="flex:1;min-width:240px">
+        <div style="font-size:0.65rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem">Grounded in Research</div>
+        <p style="font-size:0.9rem;color:var(--mist);line-height:1.7">Built on the Komives et al. (2005) Leadership Identity Development model. Measuring pre/post LID stage progression as the primary outcome. Exploring the relationship between ethnic-racial identity exploration and leadership identity development.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0.5rem;min-width:200px">
+        <div style="font-size:0.65rem;font-weight:700;color:var(--mint);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.2rem">Funding Sought</div>
+        <div style="font-size:0.82rem;color:var(--mist)">· Spencer Foundation</div>
+        <div style="font-size:0.82rem;color:var(--mist)">· Echoing Green Fellowship</div>
+        <div style="font-size:0.82rem;color:var(--mist)">· Gates Foundation (Equity)</div>
+        <div style="font-size:0.82rem;color:var(--mist)">· IES SBIR · Korea Foundation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="fade-in">
+  <div class="section-inner">
+    <div class="section-eyebrow">Team</div>
+    <h2 class="section-title">Built by someone who <span class="accent">lived</span> the problem.<br>Supported by people who <span class="gold">study</span> it.</h2>
+    <div class="team-grid">
+      <div class="team-card" style="border-color:rgba(0,229,160,0.2)">
+        <div class="tc-av" style="background:var(--mint);color:var(--bg)">CJ</div>
+        <div class="tc-name">Claudia Jo</div>
+        <div class="tc-role">Founder</div>
+        <div class="tc-inst">Leaderful · Founder</div>
+        <div class="tc-desc">Korean-American educator, researcher, and entrepreneur. Graduate student studying ERI × LID development. "I build this because I was Yuna."</div>
+      </div>
+      <div class="team-card">
+        <div class="tc-av" style="background:var(--forest);color:var(--mint)">RL</div>
+        <div class="tc-name">Richard M. Lerner</div>
+        <div class="tc-role">Academic Advisor</div>
+        <div class="tc-inst">Tufts University</div>
+        <div class="tc-desc">Bergstrom Chair in Applied Developmental Science. Leading researcher in positive youth development and applied developmental science.</div>
+      </div>
+      <div class="team-card">
+        <div class="tc-av" style="background:var(--forest);color:var(--gold)">JD</div>
+        <div class="tc-name">John P. Dugan</div>
+        <div class="tc-role">Academic Advisor</div>
+        <div class="tc-inst">Marquette University</div>
+        <div class="tc-desc">Author of <em>Leadership Theory: Cultivating Critical Perspectives</em>. The leading scholar in Leadership Identity Development research.</div>
+      </div>
+      <div class="team-card">
+        <div class="tc-av" style="background:var(--forest);color:var(--mint)">SL</div>
+        <div class="tc-name">Stacey J. Lee</div>
+        <div class="tc-role">Academic Advisor</div>
+        <div class="tc-inst">UW–Madison</div>
+        <div class="tc-desc">Researcher on Asian-American adolescent identity, immigration, and schooling. Female advisor of color with direct expertise in the student populations Leaderful serves.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-orb"></div>
+  <div class="cta-inner">
+    <h2>"Leaderful is the intervention.<br>The students are the proof."</h2>
+    <p>We are not building another leadership app. We are building the first one that starts where Yuna is — not where she's supposed to be.</p>
+    <div class="cta-actions">
+      <a href="https://cjo07-sumo.github.io/leaderful" target="_blank" class="btn-primary">Explore the App →</a>
+      <a href="/cdn-cgi/l/email-protection#c7aba2a6a3a2b5a1b2ab87a2a3b2b6b2aeb7e9a8b5a0" class="btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">Leader<span>ful</span></a>
+  <div class="footer-note">© 2025 Leaderful · Claudia Jo, Founder · Grow the leader within you.</div>
+  <div class="footer-links">
+    <a href="https://cjo07-sumo.github.io/leaderful" target="_blank">App Demo</a>
+    <a href="#urgency">Problem</a>
+    <a href="#solution">Solution</a>
+    <a href="#team">Team</a>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Intersection Observer for fade-in — progressive enhancement only
+try {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
+  
+  document.querySelectorAll('.fade-in').forEach(el => {
+    el.classList.add('ready');
+    observer.observe(el);
+  });
+  
+  // Also immediately make any already-visible elements show
+  setTimeout(() => {
+    document.querySelectorAll('.fade-in.ready').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight) el.classList.add('visible');
+    });
+  }, 100);
+} catch(e) {
+  // Fallback: just show everything
+  document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+}
+
+// Smooth active nav links
+window.addEventListener('scroll', () => {
+  const sections = document.querySelectorAll('section[id]');
+  const scrollY = window.scrollY + 120;
+  sections.forEach(s => {
+    const top = s.offsetTop, h = s.offsetHeight;
+    const id = s.getAttribute('id');
+    const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+    if (link) {
+     
